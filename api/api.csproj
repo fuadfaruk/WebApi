@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <Folder Include="Dtos\Comment\" />
   </ItemGroup>
 
 </Project>

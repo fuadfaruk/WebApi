@@ -32,7 +32,6 @@ public static partial class Program
         // Map attribute-routed controllers
         app.MapControllers();
 
-        app.MapGet("/", () => "API is running");
         app.Run();
     }
 }
