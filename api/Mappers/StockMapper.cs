@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace api.Mappers
 {
-    public static class StockMappers
+    public static class StockMapper
     {
         public static StockDto ToStockDto(this Stock stockModel)
         {
