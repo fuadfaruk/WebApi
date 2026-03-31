@@ -3,6 +3,7 @@ using api.Models;
 using api.Dtos.Stock;
 using api.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using api.Helpers;
 
 namespace api.Repository
 {
@@ -63,9 +64,22 @@ namespace api.Repository
             return exitstingStock;
         }
 
-        public async Task<List<Stock>> GetAllAsync()
+        public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
-            return await _context.Stocks.Include(c => c.Comments).ToListAsync();
+
+            var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+
+            if(!string.IsNullOrWhiteSpace(query.CompanyName))
+            {
+                stocks = stocks.Where(s => s.CompanyName.Contains(query.CompanyName));
+            }
+
+            if(!string.IsNullOrWhiteSpace(query.Symbol))
+            {
+                stocks = stocks.Where(s => s.Symbol.Contains(query.Symbol));
+            }
+
+            return await stocks.ToListAsync();
         }
 
         public Task<bool> StockExists(int id)
