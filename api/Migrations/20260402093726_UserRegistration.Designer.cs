@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api.Data;
 
@@ -11,9 +12,11 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260402093726_UserRegistration")]
+    partial class UserRegistration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,15 +54,15 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e9432e9a-cf13-402b-8960-0ac33dad5b0a",
-                            ConcurrencyStamp = "9e5790c3-7a50-4df0-b596-de7d9ebfe10a",
+                            Id = "fc5a45db-74b0-4269-a94b-4b83b64cd888",
+                            ConcurrencyStamp = "a9afd532-7853-4589-8be7-99ab0b3e32fc",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "47627979-7851-42fa-9222-5ddb70acf0b0",
-                            ConcurrencyStamp = "8573ddb5-8cdd-4e52-a4a4-58e310ed4e12",
+                            Id = "77c16e3f-317c-4f4e-a210-30bad9f5f5fa",
+                            ConcurrencyStamp = "338d73ee-4d82-4bf6-b8e2-5ae7fa8151a5",
                             Name = "User",
                             NormalizedName = "USER"
                         });
