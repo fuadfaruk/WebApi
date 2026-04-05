@@ -11,5 +11,7 @@ namespace api.Models
         public DateTime CreatedOn { get; set; } = DateTime.Now;
         public int? StockId { get; set; } // Foreign key property
         public Stock? Stock { get; set; } // Navigation property
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }
