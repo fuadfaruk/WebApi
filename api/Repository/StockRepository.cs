@@ -92,9 +92,14 @@ namespace api.Repository
             return await stocks.Skip(skipNumber).Take(query.PageSize).ToListAsync();
         }
 
-        public Task<bool> StockExists(int id)
+        public async Task<bool> StockExists(int id)
         {
-            return _context.Stocks.AnyAsync(s => s.Id == id);
+            return await _context.Stocks.AnyAsync(s => s.Id == id);
+        }
+
+        public async Task<Stock?> GetBySymbolAsync(string symbol)
+        {
+            return await _context.Stocks.FirstOrDefaultAsync(s => s.Symbol == symbol);
         }
     }
 }
