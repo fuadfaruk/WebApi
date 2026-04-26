@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using api.Models;
 using api.Extensions;
+using api.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
@@ -25,13 +27,14 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [Authorize]
+        public async Task<IActionResult> GetAll([FromQuery]CommentQueryObject queryObject)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var comments = await _commentRepo.GetAllAsync();
+            var comments = await _commentRepo.GetAllAsync(queryObject);
             var commentDto = comments.Select(s => s.ToCommentDto());
             return Ok(commentDto);
         }
