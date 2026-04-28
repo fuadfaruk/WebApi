@@ -1,30 +1,26 @@
-import React from "react";
-import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../Context/useAuth";
+import React from "react";
 import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { useAuth } from "../../Context/useAuth";
 
 type Props = {};
 
-type LoginFormsInputs = {
+type LoginFormInputs = {
   userName: string;
   password: string;
 };
 
 const validation = Yup.object().shape({
   userName: Yup.string().required("Username is required"),
-  password: Yup.string().required("Password is required"),
+  password: Yup.string().required("Password is required")
 });
 
 const LoginPage = (props: Props) => {
   const { loginUser } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormsInputs>({ resolver: yupResolver(validation) });
+  const { register, handleSubmit, formState: { errors }} = useForm<LoginFormInputs>({ resolver: yupResolver(validation)});
 
-  const handleLogin = (form: LoginFormsInputs) => {
+  const handleLogin = (form: LoginFormInputs) => {
     loginUser(form.userName, form.password);
   };
   return (
@@ -35,10 +31,7 @@ const LoginPage = (props: Props) => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in to your account
             </h1>
-            <form
-              className="space-y-4 md:space-y-6"
-              onSubmit={handleSubmit(handleLogin)}
-            >
+            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(handleLogin)}>
               <div>
                 <label
                   htmlFor="email"

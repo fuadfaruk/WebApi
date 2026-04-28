@@ -97,4 +97,4 @@ export const UserProvider = ({ children }: Props) => {
   );
 };
 
-export const userAuth = () => React.useContext(UserContext);
+export const useAuth = () => React.useContext(UserContext);
