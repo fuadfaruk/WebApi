@@ -2,7 +2,7 @@ import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
 import { UserProfileToken } from "../Models/User";
 
-const api = "http://localhost:5092/api/";
+const api = "https://localhost:7283/api/";
 
 export const loginAPI = async (username: string, password: string) => {
   try {
@@ -10,7 +10,7 @@ export const loginAPI = async (username: string, password: string) => {
       username: username,
       password: password
     });
-
+console.log("Response received:", data);
     return data;
   } catch (error) {
     handleError(error)
@@ -24,9 +24,10 @@ export const registerAPI = async (email: string, username: string, password: str
       username: username,
       password: password
     });
-
+    console.log("Response received:", data);
     return data;
   } catch (error) {
+    console.error("Error during login:", error);
     handleError(error)
   }
 }

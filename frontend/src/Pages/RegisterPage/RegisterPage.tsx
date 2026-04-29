@@ -1,21 +1,21 @@
-import React from "react";
-import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../Context/useAuth";
+import React from "react";
 import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { useAuth } from "../../Context/useAuth";
 
 type Props = {};
 
-type RegisterFormsInputs = {
+type RegisterFormInputs = {
   email: string;
   userName: string;
   password: string;
 };
 
 const validation = Yup.object().shape({
-  email: Yup.string().required("Email is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
   userName: Yup.string().required("Username is required"),
-  password: Yup.string().required("Password is required"),
+  password: Yup.string().required("Password is required")
 });
 
 const RegisterPage = (props: Props) => {
@@ -23,10 +23,10 @@ const RegisterPage = (props: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterFormsInputs>({ resolver: yupResolver(validation) });
-
-  const handleLogin = (form: RegisterFormsInputs) => {
+    formState: { errors }
+  } = useForm<RegisterFormInputs>({ resolver: yupResolver(validation) });
+  
+  const handleRegister = (form: RegisterFormInputs) => {
     registerUser(form.email, form.userName, form.password);
   };
   return (
@@ -35,12 +35,9 @@ const RegisterPage = (props: Props) => {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mb-20 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Sign in to your account
+              Sign up for an account
             </h1>
-            <form
-              className="space-y-4 md:space-y-6"
-              onSubmit={handleSubmit(handleLogin)}
-            >
+            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(handleRegister)}>
               <div>
                 <label
                   htmlFor="email"
@@ -49,7 +46,7 @@ const RegisterPage = (props: Props) => {
                   Email
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Email"
@@ -113,7 +110,7 @@ const RegisterPage = (props: Props) => {
                 type="submit"
                 className="w-full text-white bg-lightGreen hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                Sign in
+                Sign up
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}

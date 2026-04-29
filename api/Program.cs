@@ -100,14 +100,13 @@ public static partial class Program
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
-
         app.UseCors(x => x.AllowAnyOrigin().
             AllowAnyMethod().
             AllowAnyHeader()
             //.WithOrigins("https://localhost:44351")
             .SetIsOriginAllowed(origin => true));
 
+        app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();
 
