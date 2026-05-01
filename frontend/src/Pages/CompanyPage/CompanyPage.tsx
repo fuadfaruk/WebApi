@@ -8,6 +8,11 @@ import Tile from "../../Components/Tile/Tile";
 import Spinner from "../../Components/Spinners/Spinner";
 import CompFinder from "../../Components/CompFinder/CompFinder";
 import TenKFinder from "../../Components/TenKFinder/TenKFinder";
+import {
+  formatLargeMonetaryNumber,
+  formatLargeNonMonetaryNumber,
+  formatRatio,
+} from "../../Helpers/NumberFormatting";
 
 interface Props {}
 
@@ -30,14 +35,37 @@ const CompanyPage = (props: Props) => {
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
           <Sidebar />
           <CompanyDashboard ticker={ticker!}>
-            <Tile title="Company Name" subTitle={company.companyName} />
-            <Tile title="Price" subTitle={"$" + company.price.toString()} />
-            <Tile title="DCF" subTitle={"$" + company.dcf.toString()} />
-            <Tile title="Sector" subTitle={company.sector} />
+              <Tile title="Company Name" subTitle={company.companyName || "N/A"} />
+              <Tile title="Price" subTitle={"$" + company.price.toString()} />
+              <Tile
+                title="Market Cap"
+                subTitle={
+                  company.marketCap
+                    ? formatLargeMonetaryNumber(company.marketCap)
+                    : "N/A"
+                }
+              />
+              <Tile
+                title="Change %"
+                subTitle={
+                  company.changePercentage !== undefined
+                    ? formatRatio(company.changePercentage) + "%"
+                    : "N/A"
+                }
+              />
+              <Tile
+                title="Volume"
+                subTitle={
+                  company.volume
+                    ? formatLargeNonMonetaryNumber(company.volume)
+                    : "N/A"
+                }
+              />
+              <Tile title="Sector" subTitle={company.sector || "N/A"} />
             <CompFinder ticker={company.symbol} />
             <TenKFinder ticker={company.symbol} />
             <p className="bg-white shadow rounded text-medium font-medium text-gray-900 p-3 mt-1 m-4">
-              {company.description}
+              {company.description || ""}
             </p>
           </CompanyDashboard>
         </div>
