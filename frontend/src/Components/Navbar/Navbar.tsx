@@ -27,21 +27,19 @@ const Navbar = (props: Props) => {
             <a
               onClick={logout}
               className="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
-            >
-              Logout
-            </a>
+              >
+                Logout
+              </a>
           </div>
         ) : (
-          <div className="hidden lg:flex items-center space-x-6 text-back">
-            <Link to="/login" className="hover:text-darkBlue">
-              Login
-            </Link>
+<div className="hidden lg:flex items-center space-x-6 text-back">
+            <Link to="/login" className="hover:text-darkBlue">Login</Link>
             <Link
               to="/register"
               className="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
-            >
-              Signup
-            </Link>
+              >
+                Signup
+              </Link>
           </div>
         )}
       </div>
