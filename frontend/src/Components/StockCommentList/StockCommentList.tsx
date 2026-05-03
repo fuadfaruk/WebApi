@@ -1,6 +1,6 @@
-import React from "react";
-import { CommentGet } from "../../Models/Comment";
-import StockCommentListItem from "../StockCommentListItem/StockCommentListItem";
+import React from 'react';
+import { CommentGet } from '../../Models/Comment';
+import StockCommentListItem from '../StockCommentListItem/StockCommentListItem';
 
 type Props = {
   comments: CommentGet[];
@@ -9,11 +9,9 @@ type Props = {
 const StockCommentList = ({ comments }: Props) => {
   return (
     <>
-      {comments
-        ? comments.map((comment) => {
-            return <StockCommentListItem comment={comment} />;
-          })
-        : ""}
+    {comments? comments.map((comment) => {
+      return <StockCommentListItem comment={comment}></StockCommentListItem>
+    }) : ""}
     </>
   );
 };

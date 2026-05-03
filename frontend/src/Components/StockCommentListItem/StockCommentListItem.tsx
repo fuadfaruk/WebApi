@@ -1,5 +1,5 @@
-import React from "react";
-import { CommentGet } from "../../Models/Comment";
+import React from 'react';
+import { CommentGet } from '../../Models/Comment';
 
 type Props = {
   comment: CommentGet;
@@ -11,7 +11,7 @@ const StockCommentListItem = ({ comment }: Props) => {
       <div className="relative flex gap-4">
         <div className="flex flex-col w-full">
           <div className="flex flex-row justify-between">
-            <p className="relative text-xl whitespace-nowrap truncate overflow-hidden">
+            <p className=" relative text-xl whitespace-nowrap truncate overflow-hidden">
               {comment.title}
             </p>
           </div>
