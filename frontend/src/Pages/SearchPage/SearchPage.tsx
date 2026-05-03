@@ -34,27 +34,26 @@ const SearchPage = (props: Props) => {
   const getPortfolio = () => {
     portfolioGetAPI()
       .then((res) => {
-        if (res?.data) {
-          setPortfolioValues(res?.data);
+        if(res?.data) {
+          setPortfolioValues(res.data);
         }
       })
       .catch((e) => {
-        setPortfolioValues(null);
+        toast.warning("Unable to get portfolio!");
       });
-  };
+  }
 
   const onPortfolioCreate = (e: any) => {
     e.preventDefault();
     portfolioAddAPI(e.target[0].value)
-      .then((res) => {
-        if (res?.status === 204) {
-          toast.success("Stock added to portfolio!");
-          getPortfolio();
-        }
-      })
-      .catch((e) => {
-        toast.warning("Could not add stock to portfolio!");
-      });
+    .then((res) => {
+      if (res?.status == 204) {
+        toast.success("Stock added to portfolio!");
+        getPortfolio();
+      }
+    }).catch((e) => {
+      toast.warning("Unable to add stock to portfolio!");
+    });
   };
 
   const onPortfolioDelete = (e: any) => {
@@ -64,6 +63,8 @@ const SearchPage = (props: Props) => {
         toast.success("Stock deleted from portfolio!");
         getPortfolio();
       }
+    }).catch((e) => {
+      toast.warning("Unable to delete stock from portfolio!");
     });
   };
 
