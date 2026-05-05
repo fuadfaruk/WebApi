@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState, SyntheticEvent, FormEvent } from "react";
 
 interface Props {
   onSearchSubmit: (e: SyntheticEvent) => void;
-  search: string | undefined;
+  search: string;
   handleSearchChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -24,7 +24,15 @@ const Search: React.FC<Props> = ({
             placeholder="Search companies"
             value={search}
             onChange={handleSearchChange}
-          ></input>
+            aria-label="Search companies"
+          />
+          <button
+            type="submit"
+            className="mt-2 md:mt-0 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            aria-label="Submit search"
+          >
+            Search
+          </button>
         </form>
       </div>
     </section>
