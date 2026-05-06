@@ -250,42 +250,50 @@ export interface CompanyCashFlow {
 
 export interface CompanyKeyMetrics {
   symbol: string
-  price: number
   marketCap: number
-  beta: number
-  lastDividend: number
-  range: string
-  change: number
-  changePercentage: number
-  volume: number
-  averageVolume: number
-  companyName: string
-  currency: string
-  cik: string
-  isin: string
-  cusip: string
-  exchangeFullName: string
-  exchange: string
-  industry: string
-  website: string
-  description: string
-  ceo: string
-  sector: string
-  country: string
-  fullTimeEmployees: string
-  phone: string
-  address: string
-  city: string
-  state: string
-  zip: string
-  image: string
-  ipoDate: string
-  defaultImage: boolean
-  isEtf: boolean
-  isActivelyTrading: boolean
-  isAdr: boolean
-  isFund: boolean
+  enterpriseValueTTM: number
+  evToSalesTTM: number
+  evToOperatingCashFlowTTM: number
+  evToFreeCashFlowTTM: number
+  evToEBITDATTM: number
+  netDebtToEBITDATTM: number
+  currentRatioTTM: number
+  incomeQualityTTM: number
+  grahamNumberTTM: number
+  grahamNetNetTTM: number
+  taxBurdenTTM: number
+  interestBurdenTTM: number
+  workingCapitalTTM: number
+  investedCapitalTTM: number
+  returnOnAssetsTTM: number
+  operatingReturnOnAssetsTTM: number
+  returnOnTangibleAssetsTTM: number
+  returnOnEquityTTM: number
+  returnOnInvestedCapitalTTM: number
+  returnOnCapitalEmployedTTM: number
+  earningsYieldTTM: number
+  freeCashFlowYieldTTM: number
+  capexToOperatingCashFlowTTM: number
+  capexToDepreciationTTM: number
+  capexToRevenueTTM: number
+  salesGeneralAndAdministrativeToRevenueTTM: number
+  researchAndDevelopementToRevenueTTM: number
+  stockBasedCompensationToRevenueTTM: number
+  intangiblesToTotalAssetsTTM: number
+  averageReceivablesTTM: number
+  averagePayablesTTM: number
+  averageInventoryTTM: number
+  daysOfSalesOutstandingTTM: number
+  daysOfPayablesOutstandingTTM: number
+  daysOfInventoryOutstandingTTM: number
+  operatingCycleTTM: number
+  cashConversionCycleTTM: number
+  freeCashFlowToEquityTTM: number
+  freeCashFlowToFirmTTM: number
+  tangibleAssetValueTTM: number
+  netCurrentAssetValueTTM: number
 }
+
 
 export interface CompanyHistoricalDividend {
   symbol: string;
