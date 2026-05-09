@@ -10,12 +10,11 @@ type Props = {};
 const HistoricalDividend = (props: Props) => {
   const ticker = useOutletContext<string>();
   const [dividend, setDividend] = useState<Dividend[]>();
-  useState<boolean>(false);
   useEffect(() => {
     const fetchHistoricalDividend = async () => {
       const value = await getHistoricalDividend(ticker);
       setDividend(
-        value?.data.historical.slice(0, 18).sort(function (a, b) {
+        value?.data?.historical?.slice(0, 18).sort(function (a, b) {
           var c = new Date(a.date);
           var d = new Date(b.date);
           return c.getTime() - d.getTime();
