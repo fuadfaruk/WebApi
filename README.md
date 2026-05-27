@@ -1,11 +1,11 @@
-# FinShark - Stock Portfolio Management API
+# Stock Portfolio Management API
 
 A comprehensive RESTful Web API built with ASP.NET Core for managing stock portfolios, tracking investments, and facilitating user discussion through comments. The API integrates with the Financial Modeling Prep (FMP) API to fetch real-time stock data and provides JWT-based authentication for secure access.
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
 - [Features](#features)
+- [Overview](#overview)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
@@ -20,13 +20,55 @@ A comprehensive RESTful Web API built with ASP.NET Core for managing stock portf
 
 ---
 
-## Overview
+## Features
 
-FinShark is a backend API designed to provide complete stock portfolio management functionality. Users can register accounts, manage their stock portfolios, track individual stocks with detailed information, and engage with the community through comments on stocks. The API is built following clean architecture principles with separation of concerns through repositories, services, and DTOs.
+### 🔐 User Management & Authentication
+- **User Registration**: Create new accounts with email and secure password
+- **User Login**: Authenticate with JWT tokens for stateless, secure API access
+- **JWT Authentication**: Token-based security for protected endpoints
+- **Role-Based Access Control**: User roles for future authorization enhancements
+
+### 📈 Stock Management
+- **Browse Stocks**: Get a paginated list of all stocks in the database
+- **Stock Details**: Retrieve detailed information about individual stocks (symbol, company name, purchase price, last dividend, industry, market cap)
+- **Create Stocks**: Add new stocks to the database (admin functionality)
+- **Update Stocks**: Modify stock information (price, dividend, etc.)
+- **Delete Stocks**: Remove stocks from the database
+- **Advanced Querying**: 
+  - Pagination support (skip, take)
+  - Sorting by various fields
+  - Dynamic filtering capabilities
+
+### 💼 Portfolio Management
+- **User Portfolios**: Each authenticated user can maintain a personal stock portfolio
+- **Add Stocks to Portfolio**: Link stocks to user's investment portfolio
+- **Remove Stocks from Portfolio**: Easily divest from holdings
+- **Portfolio Overview**: View all stocks in your portfolio with aggregated data
+- **Real-time Stock Lookup**: Automatically fetch and add stocks from Financial Modeling Prep API if not in database
+
+### 💬 Community Comments & Discussion
+- **Stock Comments**: Users can comment on stocks they're interested in or own
+- **Create Comments**: Add title and content-based comments on stocks
+- **Read Comments**: Browse all comments on a stock or view individual comments
+- **Update Comments**: Edit your own comments
+- **Delete Comments**: Remove comments (creator only)
+- **Comment Filtering**: 
+  - Filter comments by stock
+  - Pagination for large comment threads
+  - Sort by creation date
+
+### 🔄 External Data Integration
+- **Financial Modeling Prep Integration**: Real-time stock data lookup from FMP API
+- **Automatic Stock Creation**: When users search for a stock not in the database, it's automatically fetched and added from FMP
+- **Comprehensive Stock Data**: Access to company profiles, market cap, industry information
 
 ---
 
-## Features
+## Overview
+
+This is a backend API designed to provide complete stock portfolio management functionality. Users can register accounts, manage their stock portfolios, track individual stocks with detailed information, and engage with the community through comments on stocks. The API is built following clean architecture principles with separation of concerns through repositories, services, and DTOs.
+
+---
 
 ### 🔐 User Management & Authentication
 - **User Registration**: Create new accounts with email and secure password
