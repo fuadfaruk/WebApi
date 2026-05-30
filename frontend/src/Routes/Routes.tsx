@@ -3,6 +3,7 @@ import App from "../App";
 import HomePage from "../Pages/HomePage/HomePage";
 import CompanyPage from "../Pages/CompanyPage/CompanyPage";
 import SearchPage from "../Pages/SearchPage/SearchPage";
+import PortfolioPage from "../Pages/PortfolioPage/PortfolioPage";
 import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
 import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
 import DesignGuide from "../Pages/DesignGuide/DesignGuide";
@@ -11,6 +12,7 @@ import HistoricalDividend from "../Components/HistoricalDividend/HistoricalDivid
 import CashflowStatement from "../Components/CashflowStatement/CashflowStatement";
 import LoginPage from "../Pages/LoginPage/LoginPage";
 import RegisterPage from "../Pages/RegisterPage/RegisterPage";
+import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
@@ -26,6 +28,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SearchPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "portfolio",
+        element: (
+          <ProtectedRoute>
+            <PortfolioPage />
           </ProtectedRoute>
         ),
       },
@@ -45,6 +55,7 @@ export const router = createBrowserRouter([
           { path: "historical-dividend", element: <HistoricalDividend /> },
         ],
       },
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ]);

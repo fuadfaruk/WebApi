@@ -17,24 +17,39 @@ const Card: React.FC<Props> = ({
 }: Props): JSX.Element => {
   return (
     <div
-      className="flex flex-col items-center justify-between w-full p-6 bg-slate-100 rounded-lg md:flex-row"
+      className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-200 hover:border-lightBlue overflow-hidden"
       key={id}
       id={id}
     >
-      <Link
-        to={`/company/${searchResult.symbol}/company-profile`}
-        className="font-bold text-center text-veryDarkViolet md:text-left"
-      >
-        {searchResult.name} ({searchResult.symbol})
-      </Link>
-      <p className="text-veryDarkBlue">{searchResult.currency}</p>
-      <p className="font-bold text-veryDarkBlue">
-        {searchResult.exchangeShortName} - {searchResult.stockExchange}
-      </p>
-      <AddPortfolio
-        onPortfolioCreate={onPortfolioCreate}
-        symbol={searchResult.symbol}
-      />
+      <div className="flex flex-col sm:flex-row items-center justify-between p-6 gap-4">
+        {/* Company Info */}
+        <Link
+          to={`/company/${searchResult.symbol}/company-profile`}
+          className="flex-1 min-w-0"
+        >
+          <div className="hover:opacity-80 transition-opacity">
+            <h3 className="font-bold text-lg text-gray-900 truncate">
+              {searchResult.name}
+            </h3>
+            <p className="text-sm text-gray-600 mt-1">
+              <span className="font-semibold text-lightBlue">{searchResult.symbol}</span>
+              {" • "}
+              <span>{searchResult.exchangeShortName}</span>
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              {searchResult.stockExchange} • {searchResult.currency}
+            </p>
+          </div>
+        </Link>
+
+        {/* Action Button */}
+        <div className="flex-shrink-0">
+          <AddPortfolio
+            onPortfolioCreate={onPortfolioCreate}
+            symbol={searchResult.symbol}
+          />
+        </div>
+      </div>
     </div>
   );
 };

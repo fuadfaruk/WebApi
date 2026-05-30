@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../Context/useAuth";
 import { Link } from "react-router-dom";
 
@@ -19,10 +19,19 @@ const validation = Yup.object().shape({
 
 const LoginPage = (props: Props) => {
   const { loginUser } = useAuth();
-  const { register, handleSubmit, formState: { errors }} = useForm<LoginFormInputs>({ resolver: yupResolver(validation)});
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, formState: { errors }} = useForm<LoginFormInputs>({ 
+    resolver: yupResolver(validation),
+    mode: 'onSubmit'
+  });
 
-  const handleLogin = (form: LoginFormInputs) => {
-    loginUser(form.userName, form.password);
+  const handleLogin = async (form: LoginFormInputs) => {
+    setIsLoading(true);
+    try {
+      loginUser(form.userName, form.password);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
