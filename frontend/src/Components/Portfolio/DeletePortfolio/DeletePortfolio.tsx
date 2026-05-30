@@ -1,20 +1,21 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 
 interface Props {
-  onPortfolioDelete: (e: SyntheticEvent) => void;
+  onPortfolioDelete: (symbol: string) => void;
   portfolioValue: string;
 }
 
 const DeletePortfolio = ({ onPortfolioDelete, portfolioValue }: Props) => {
   return (
-    <form onSubmit={onPortfolioDelete} className="w-full">
-      <input hidden={true} value={portfolioValue} />
-      <button 
+    <div className="w-full">
+      <button
         className="w-full py-2 px-4 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-all font-semibold text-sm border border-red-200 hover:border-red-300 flex items-center justify-center gap-2"
         type="button"
         onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
           if (window.confirm(`Are you sure you want to remove ${portfolioValue} from your portfolio?`)) {
-            onPortfolioDelete(e as unknown as SyntheticEvent);
+            onPortfolioDelete(portfolioValue);
           }
         }}
       >
@@ -23,7 +24,7 @@ const DeletePortfolio = ({ onPortfolioDelete, portfolioValue }: Props) => {
         </svg>
         Remove
       </button>
-    </form>
+    </div>
   );
 };
 

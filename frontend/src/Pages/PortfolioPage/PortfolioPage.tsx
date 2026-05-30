@@ -1,4 +1,4 @@
-import React, { useEffect, useState, SyntheticEvent } from "react";
+import React, { useEffect, useState } from "react";
 import { PortfolioGet } from "../../Models/Portfolio";
 import ListPortfolio from "../../Components/Portfolio/ListPortfolio/ListPortfolio";
 import {
@@ -24,9 +24,8 @@ const PortfolioPage = () => {
       });
   };
 
-  const onPortfolioDelete = (e: SyntheticEvent) => {
-    e.preventDefault();
-    portfolioDeleteAPI(e.target[0].value)
+  const onPortfolioDelete = (symbol: string) => {
+    portfolioDeleteAPI(symbol)
       .then((res) => {
         if (res?.status == 200) {
           toast.success("Stock deleted from portfolio!");
