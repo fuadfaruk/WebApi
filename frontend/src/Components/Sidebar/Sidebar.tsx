@@ -22,11 +22,11 @@ const Sidebar = (props: Props) => {
 
   return (
     <>
-      {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden fixed top-20 left-4 z-40 p-2 rounded-lg bg-lightBlue text-white hover:bg-darkBlue transition-colors"
+        className="md:hidden fixed top-24 left-4 z-50 p-3 rounded-2xl bg-lightBlue text-white shadow-lg hover:bg-darkBlue transition-colors"
         aria-expanded={isOpen}
+        aria-label="Toggle navigation"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           {isOpen ? (
@@ -37,43 +37,51 @@ const Sidebar = (props: Props) => {
         </svg>
       </button>
 
-      {/* Mobile Overlay */}
       {isOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/50 z-30 top-16"
+          className="md:hidden fixed inset-0 bg-slate-950/30 backdrop-blur-sm z-40"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
 
-      {/* Sidebar */}
       <nav
-        className={`fixed md:relative md:translate-x-0 transition-transform duration-300 ease-in-out top-16 left-0 h-[calc(100vh-64px)] w-64 bg-white shadow-xl z-40 overflow-y-auto ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed md:fixed md:translate-x-0 transition-transform duration-300 ease-in-out top-16 left-0 h-[calc(100vh-64px)] w-full max-w-[18rem] bg-white shadow-xl z-50 overflow-y-auto border-r border-slate-200 ${
+          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
-        <div className="flex flex-col p-6 space-y-2">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Navigation</h3>
+        <div className="flex flex-col gap-6 p-6">
+          <div className="space-y-2">
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Company Section</p>
+            <h3 className="text-2xl font-semibold tracking-tight text-slate-950">Company Insights</h3>
+            <p className="text-sm text-slate-600 leading-6">
+              Navigate the company profile, financial statements, dividend history, and more.
+            </p>
+          </div>
 
-          {navItems.map((item) => {
-            const IconComponent = item.icon;
-            const active = isActive(item.path);
+          <div className="space-y-2 border-t border-slate-200 pt-4">
+            {navItems.map((item) => {
+              const IconComponent = item.icon;
+              const active = isActive(item.path);
 
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
-                  active
-                    ? "bg-lightBlue text-white font-semibold"
-                    : "text-gray-700 hover:bg-gray-100 font-medium"
-                }`}
-              >
-                <IconComponent className="text-lg" />
-                <span>{item.label}</span>
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-all duration-200 ${
+                    active
+                      ? "bg-lightBlue/10 text-slate-950 shadow-sm"
+                      : "text-slate-700 hover:bg-slate-100"
+                  }`}
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-lightBlue/10 text-lightBlue text-lg">
+                    <IconComponent />
+                  </span>
+                  <span className="text-sm font-medium">{item.label}</span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </nav>
     </>
